@@ -17,6 +17,20 @@ fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .setup(|app| {
+            let window = app.get_webview_window("main").unwrap();
+
+            let monitor = window.current_monitor().unwrap().unwrap();
+            let screen = monitor.size();
+
+            let win_size = 200;
+
+            let x = (screen.width as i32 - win_size) / 2;
+            let y = (screen.height as i32 - win_size) / 2;
+
+            window.set_position(tauri::PhysicalPosition::new(x, y)).ok();
+            window.set_shadow(false).ok();
+
+
             let handle = app.handle().clone();
 
             let state = Arc::new(AppState::new());
