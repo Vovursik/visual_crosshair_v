@@ -72,7 +72,6 @@ Precision crosshairs, tested in real combat conditions.
 1. `npm run tauri dev`
 
 ### Build exe
----
 
 ```bash
 npm run tauri build
